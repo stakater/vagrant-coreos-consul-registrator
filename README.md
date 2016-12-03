@@ -254,10 +254,12 @@ Then you can then use the `docker` command from your local shell by setting `DOC
 
     export DOCKER_HOST=tcp://localhost:2375
 
-Get started [using CoreOS][using-coreos]
+## To Read More!
+
+* Get started [using CoreOS][using-coreos]
+* [CoreOS-on-Vagrant](https://coreos.com/os/docs/latest/booting-on-vagrant.html)
 
 [virtualbox]: https://www.virtualbox.org/
 [vagrant]: https://www.vagrantup.com/downloads.html
 [using-coreos]: http://coreos.com/docs/using-coreos/
-[coreos-on-vagrant]: https://coreos.com/os/docs/latest/booting-on-vagrant.html
 
