@@ -9,19 +9,19 @@ Mailing list: // TODO - add mailing list info here
 
 ## Streamlined setup
 
-1) Install dependencies
+**1)** Install dependencies
 
 * [VirtualBox][virtualbox] 4.3.10 or greater.
 * [Vagrant][vagrant] 1.6.3 or greater.
 
-2) Clone this project and get it running!
+**2)** Clone this project and get it running!
 
 ```
 git clone https://github.com/stakater/vagrant-coreos-consul-registrator.git
 cd vagrant-coreos-consul-registrator
 ```
 
-3) Startup and SSH
+**3)** Startup and SSH
 
 There are two "providers" for Vagrant with slightly different instructions.
 Follow one of the following two options:
@@ -58,7 +58,7 @@ vagrant ssh
 
 Configuration is stored in the directory so you can always return to this machine by executing vagrant ssh from the directory where the Vagrantfile was located.
 
-4) Open three terminals and get ssh into each node
+**4)** Open three terminals and get ssh into each node
 
 **Node 1**
 
@@ -98,7 +98,7 @@ or
 ifconfig | grep '172.17.8' | awk '{ print $2 }'
 ```
 
-5) Run consul and get them join the cluster
+**5)** Run consul and get them join the cluster
 
 Beware the ip's are hardcoded and they will be same unless someone modifies the `Vagrantfile`
 
@@ -120,25 +120,25 @@ $(docker run --rm progrium/consul cmd:run 172.17.8.102:172.17.8.101 -d -v /mnt:/
 $(docker run --rm progrium/consul cmd:run 172.17.8.103:172.17.8.101 -d -v /mnt:/data) 
 ```
 
-6) Export HOST_IP on all 3 nodes
+**6)** Export HOST_IP on all 3 nodes
 
 ```
 export HOST_IP=$(ifconfig eth1 | grep 'inet ' | awk '{ print $2 }')
 ```
 
-7) Run docker registrator on all nodes
+**7)** Run docker registrator on all nodes
 
 ```
 docker run -d -v /var/run/docker.sock:/tmp/docker.sock --name registrator -h registrator gliderlabs/registrator:latest consul://$HOST_IP:8500
 ```
 
-8) Since now all three nodes are member of same cluster you can run following by sitting on any node; try to change the ip and you will see that the result is same
+**8)** Since now all three nodes are member of same cluster you can run following by sitting on any node; try to change the ip and you will see that the result is same
 
 ```
 curl 172.17.8.101:8500/v1/catalog/services
 ```
 
-9) Run the sample app on all nodes;
+**9)** Run the sample app on all nodes;
 
 ```
 docker run -d -P --name node1 -h node1 jlordiales/python-micro-service:latest
@@ -158,7 +158,7 @@ and then try to curl the individaul app
 curl 172.17.8.101:8080/python-micro-service/
 ```
 
-10) Now we will run a frontend load balancer using nginx which will round robin the requests 
+**10)** Now we will run a frontend load balancer using nginx which will round robin the requests 
 
 while ssh'ed into one of the nodes define a template file with name e.g. `service.ctmpl`
 
