@@ -189,6 +189,8 @@ please look the volume mapping closely!
 
 ```
 docker run -p 8080:80 -d --name nginx --volume /home/core/templates:/templates --link consul:consul stakater/nginx-with-consul-template:latest
+
+docker exec -it <container-id> /bin/bash
 ```
 
 _ISSUE_ - currently the nginx container doesn't start by default :( but if I login into the container and run the same command manually it works perfectly fine!
@@ -263,3 +265,8 @@ Then you can then use the `docker` command from your local shell by setting `DOC
 [vagrant]: https://www.vagrantup.com/downloads.html
 [using-coreos]: http://coreos.com/docs/using-coreos/
 
+## TODO
+
+* Fix the startup of ngnix load balancer - it doesn't startup by default; something is broken! samething works perfect when run from within the container
+* Write shell scripts which boostraps everything and one doesn't have to write commands manually
+* Write our own sample app
